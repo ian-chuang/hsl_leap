@@ -22,9 +22,9 @@ import logging
 from copy import deepcopy
 from enum import Enum
 
-from hsl_leap.motors.encoding_utils import decode_twos_complement, encode_twos_complement
+from lerobot.motors.encoding_utils import decode_twos_complement, encode_twos_complement
 
-from ..motors_bus import Motor, MotorCalibration, MotorsBus, NameOrID, Value, get_address
+from lerobot.motors.motors_bus import Motor, MotorCalibration, MotorsBus, NameOrID, Value, get_address
 from .tables import (
     AVAILABLE_BAUDRATES,
     MODEL_BAUDRATE_TABLE,

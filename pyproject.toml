@@ -9,9 +9,6 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "deepdiff>=8.6.1",
     "dynamixel-sdk>=4.0.3",
-    "pygame>=2.6.1",
-    "pyserial>=3.5",
-    "tqdm>=4.67.1",
+    "lerobot>=0.4.2",
 ]
