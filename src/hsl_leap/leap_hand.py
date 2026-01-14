@@ -22,6 +22,12 @@ class LeapHandConfig(RobotConfig):
     baudrate: int = 4_000_000
     disable_torque_on_disconnect: bool = True
 
+    kP: int = 600
+    kI: int = 0
+    kD: int = 200
+    curr_lim: int = 550  # set this to 550 if you are using full motors!!!!
+
+
 class LeapHand(Robot):
     config_class = LeapHandConfig
     name = "leap_hand"
@@ -71,9 +77,13 @@ class LeapHand(Robot):
             self.bus.configure_motors()
             for motor in self.bus.motors:
                 self.bus.write("Operating_Mode", motor, OperatingMode.CURRENT_POSITION.value)
-                # self.bus.write("P_Coefficient", motor, 16)
-                # self.bus.write("I_Coefficient", motor, 0)
-                # self.bus.write("D_Coefficient", motor, 32)
+                self.bus.write("Position_P_Gain", motor, self.config.kP)
+                self.bus.write("Position_I_Gain", motor, self.config.kI)
+                self.bus.write("Position_D_Gain", motor, self.config.kD)
+                if motor in ["joint_0", "joint_4", "joint_8"]:
+                    self.bus.write("Position_P_Gain", motor, int(self.config.kP * 0.75))  # 75% of kP
+                    self.bus.write("Position_D_Gain", motor, int(self.config.kD * 0.75))  # 75% of kD
+                self.bus.write("Current_Limit", motor, self.config.curr_lim) 
 
     def normalize(self, val: int) -> float:
         return val / 4095.0 * 360.0 - 180.0
@@ -142,7 +152,7 @@ if __name__ == "__main__":
 
     hand.send_action(actions)
 
-    time.sleep(3)
+    input()
 
     
 
