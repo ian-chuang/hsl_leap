@@ -37,7 +37,7 @@ class LeapHand(Robot):
         self.config = config
         self.bus = DynamixelMotorsBus(
             port=self.config.port,
-            motors={f"joint_{i}": Motor(i, "xc330-m288", MotorNormMode.DEGREES) for i in range(16)},
+            motors={f"joint_{i}": Motor(i, "xc330-m288", MotorNormMode.RANGE_M100_100) for i in range(16)},
             calibration=self.calibration,
         )
 
@@ -100,6 +100,14 @@ class LeapHand(Robot):
         obs_dict = {f"{motor}.pos": self.normalize(val) for motor, val in obs_dict.items()}
 
         return obs_dict
+    
+    def get_observation_scaled(self) -> dict[str, Any]:
+        if not self.is_connected:
+            raise ConnectionError(f"{self} is not connected.")
+        # Read arm position
+        obs_dict = self.bus.sync_read("Present_Position", normalize=True) 
+        obs_dict = {f"{motor}.pos": val / 100.0 for motor, val in obs_dict.items()}
+        return obs_dict
 
     def send_action(self, action: dict[str, Any]) -> dict[str, Any]:
         goal_pos = {key.removesuffix(".pos"): self.denormalize(val) for key, val in action.items()}
@@ -118,6 +126,12 @@ class LeapHand(Robot):
         # Send goal position to the arm
         self.bus.sync_write("Goal_Position", goal_pos, normalize=False)
 
+        return action
+    
+    def send_action_scaled(self, action: dict[str, Any]) -> dict[str, Any]:
+        goal_pos = {key.removesuffix(".pos"): val * 100.0 for key, val in action.items()}
+        # Send goal position to the arm
+        self.bus.sync_write("Goal_Position", goal_pos, normalize=True)
         return action
 
     def disconnect(self):
