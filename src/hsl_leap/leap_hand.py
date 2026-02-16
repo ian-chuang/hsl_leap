@@ -15,9 +15,53 @@ import numpy as np
 
 from typing import Any
 
-from hsl_leap import LEAP_HAND_CALIBRATION_PATH
+from hsl_leap import CALIBRATION_PATH
 
 logger = logging.getLogger(__name__)
+
+MJ_ZERO_POSITION = {
+    "if_mcp.pos": 0.0,
+    "if_rot.pos": 0.0,
+    "if_pip.pos": 0.0,
+    "if_dip.pos": 0.0,
+    "mf_mcp.pos": 0.0,
+    "mf_rot.pos": 0.0,
+    "mf_pip.pos": 0.0,
+    "mf_dip.pos": 0.0,
+    "rf_mcp.pos": 0.0,
+    "rf_rot.pos": 0.0,
+    "rf_pip.pos": 0.0,
+    "rf_dip.pos": 0.0,
+    "th_cmc.pos": 0.0,
+    "th_axl.pos": 0.0,
+    "th_mcp.pos": 0.0,
+    "th_ipl.pos": 0.0,
+}
+
+MJ_MOTOR_CONFIG = {
+    "if_mcp": Motor(1, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "if_rot": Motor(0, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "if_pip": Motor(2, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "if_dip": Motor(3, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "mf_mcp": Motor(5, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "mf_rot": Motor(4, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "mf_pip": Motor(6, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "mf_dip": Motor(7, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "rf_mcp": Motor(9, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "rf_rot": Motor(8, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "rf_pip": Motor(10, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "rf_dip": Motor(11, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "th_cmc": Motor(12, "xc330-m288", MotorNormMode.RANGE_M100_100),    
+    "th_axl": Motor(13, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "th_mcp": Motor(14, "xc330-m288", MotorNormMode.RANGE_M100_100),
+    "th_ipl": Motor(15, "xc330-m288", MotorNormMode.RANGE_M100_100),
+}
+
+DEFAULT_ZERO_POSITION = {
+    f"joint_{i}.pos": 0.0 for i in range(16)
+}
+
+DEFAULT_MOTOR_CONFIG = {f"joint_{i}": Motor(i, "xc330-m288", MotorNormMode.RANGE_M100_100) for i in range(16)}
 
 @RobotConfig.register_subclass("leap_hand")
 @dataclass
@@ -32,9 +76,11 @@ class LeapHandConfig(RobotConfig):
     kD: int = 200
     curr_lim: int = 550  # set this to 550 if you are using full motors!!!!
 
+    use_mj_motor_config: bool = True
+
     def __post_init__(self):
-        self.id = "leap_hand"
-        self.calibration_dir = LEAP_HAND_CALIBRATION_PATH
+        self.id = "leap_hand_mj" if self.use_mj_motor_config else "leap_hand"
+        self.calibration_dir = CALIBRATION_PATH
 
 
 class LeapHand(Robot):
@@ -46,7 +92,7 @@ class LeapHand(Robot):
         self.config = config
         self.bus = DynamixelMotorsBus(
             port=self.config.port,
-            motors={f"joint_{i}": Motor(i, "xc330-m288", MotorNormMode.RANGE_M100_100) for i in range(16)},
+            motors=MJ_MOTOR_CONFIG if self.config.use_mj_motor_config else DEFAULT_MOTOR_CONFIG,
             calibration=self.calibration,
         )
 
@@ -219,10 +265,11 @@ if __name__ == "__main__":
     print(hand.get_observation())
 
     
-
-    actions = {
-        f"joint_{i}.pos": 0.0 for i in range(16)
-    }
+    actions = MJ_ZERO_POSITION
+    # actions["th_ipl.pos"] = 30.0
+    # actions = {
+    #     f"joint_{i}.pos": 0.0 for i in range(16)
+    # }
     # actions['joint_0.pos'] = -40
 
     # actions = {

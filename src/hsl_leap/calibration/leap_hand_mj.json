@@ -1,0 +1,114 @@
+{
+    "if_rot": {
+        "id": 0,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1787,
+        "range_max": 2308
+    },
+    "if_mcp": {
+        "id": 1,
+        "drive_mode": 0,
+        "homing_offset": 1024,
+        "range_min": 1843,
+        "range_max": 3501
+    },
+    "if_pip": {
+        "id": 2,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1718,
+        "range_max": 3276
+    },
+    "if_dip": {
+        "id": 3,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1809,
+        "range_max": 3379
+    },
+    "mf_rot": {
+        "id": 4,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1787,
+        "range_max": 2308
+    },
+    "mf_mcp": {
+        "id": 5,
+        "drive_mode": 0,
+        "homing_offset": 1024,
+        "range_min": 1843,
+        "range_max": 3501
+    },
+    "mf_pip": {
+        "id": 6,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1718,
+        "range_max": 3276
+    },
+    "mf_dip": {
+        "id": 7,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1809,
+        "range_max": 3379
+    },
+    "rf_rot": {
+        "id": 8,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1787,
+        "range_max": 2308
+    },
+    "rf_mcp": {
+        "id": 9,
+        "drive_mode": 0,
+        "homing_offset": 1024,
+        "range_min": 1843,
+        "range_max": 3501
+    },
+    "rf_pip": {
+        "id": 10,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1718,
+        "range_max": 3276
+    },
+    "rf_dip": {
+        "id": 11,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 1809,
+        "range_max": 3379
+    },
+    "th_cmc": {
+        "id": 12,
+        "drive_mode": 0,
+        "homing_offset": 1024,
+        "range_min": 1820,
+        "range_max": 3413
+    },
+    "th_axl": {
+        "id": 13,
+        "drive_mode": 0,
+        "homing_offset": 2048,
+        "range_min": 1924,
+        "range_max": 3058
+    },
+    "th_mcp": {
+        "id": 14,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 2132,
+        "range_max": 3286
+    },
+    "th_ipl": {
+        "id": 15,
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "range_min": 2048,
+        "range_max": 3273
+    }
+}
