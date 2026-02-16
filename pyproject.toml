@@ -12,3 +12,10 @@ dependencies = [
     "dynamixel-sdk>=4.0.3",
     "lerobot>=0.4.2",
 ]
+
+[project.optional-dependencies]
+sysid = [
+    "ipykernel>=7.2.0",
+    "mediapy>=1.2.6",
+    "mujoco[sysid]>=3.5.0",
+]
