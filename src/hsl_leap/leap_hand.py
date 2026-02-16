@@ -15,6 +15,8 @@ import numpy as np
 
 from typing import Any
 
+from hsl_leap import LEAP_HAND_CALIBRATION_PATH
+
 logger = logging.getLogger(__name__)
 
 @RobotConfig.register_subclass("leap_hand")
@@ -29,6 +31,10 @@ class LeapHandConfig(RobotConfig):
     kI: int = 0
     kD: int = 200
     curr_lim: int = 550  # set this to 550 if you are using full motors!!!!
+
+    def __post_init__(self):
+        self.id = "leap_hand"
+        self.calibration_dir = LEAP_HAND_CALIBRATION_PATH
 
 
 class LeapHand(Robot):
@@ -198,8 +204,6 @@ class LeapHand(Robot):
 
 
 if __name__ == "__main__":
-
-    from pathlib import Path
     import time
     
     # allow debug logging
@@ -208,8 +212,6 @@ if __name__ == "__main__":
     hand = LeapHand(
         LeapHandConfig(
             port="/dev/tty.usbserial-FTAO51BR",
-            calibration_dir=Path(__file__).parent / "calibration",
-            id="leap_hand",
         )
     )
     hand.connect()
