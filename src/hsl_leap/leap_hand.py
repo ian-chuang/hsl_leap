@@ -10,6 +10,9 @@ from hsl_leap.motors.dynamixel import (
 from dataclasses import dataclass
 from lerobot.robots import RobotConfig, Robot
 
+import time
+import numpy as np
+
 from typing import Any
 
 logger = logging.getLogger(__name__)
@@ -133,6 +136,62 @@ class LeapHand(Robot):
         # Send goal position to the arm
         self.bus.sync_write("Goal_Position", goal_pos, normalize=True)
         return action
+    
+    def move(self, action: dict[str, Any], duration: float = 1.0, scaled: bool = False) -> None:
+        if not self.is_connected:
+            raise ConnectionError(f"{self} is not connected.")
+
+        if duration <= 0:
+            # just send once
+            if scaled:
+                self.send_action_scaled(action)
+            else:
+                self.send_action(action)
+            return
+
+        # ---- 1. Get current positions ----
+        if scaled:
+            current_obs = self.get_observation_scaled()
+        else:
+            current_obs = self.get_observation()
+
+        # Only interpolate joints present in action
+        start = {k: current_obs[k] for k in action.keys()}
+        target = action
+
+        # ---- 2. Timing setup ----
+        control_rate = 100.0  # Hz (adjust if needed)
+        dt = 1.0 / control_rate
+        steps = max(1, int(duration * control_rate))
+
+        start_time = time.time()
+
+        # ---- 3. Interpolate ----
+        for i in range(steps):
+            alpha = (i + 1) / steps  # linear ramp 0 → 1
+
+            interp_action = {
+                k: (1 - alpha) * start[k] + alpha * target[k]
+                for k in target.keys()
+            }
+
+            if scaled:
+                self.send_action_scaled(interp_action)
+            else:
+                self.send_action(interp_action)
+
+            # maintain timing
+            next_time = start_time + (i + 1) * dt
+            sleep_time = next_time - time.time()
+            if sleep_time > 0:
+                time.sleep(sleep_time)
+
+        # ---- 4. Ensure exact final position ----
+        if scaled:
+            self.send_action_scaled(target)
+        else:
+            self.send_action(target)
+
 
     def disconnect(self):
         self.bus.disconnect(self.config.disable_torque_on_disconnect)
@@ -164,7 +223,12 @@ if __name__ == "__main__":
     }
     # actions['joint_0.pos'] = -40
 
-    hand.send_action(actions)
+    # actions = {
+    #     "joint_1.pos": 0.0,
+    # }
+
+    # hand.send_action(actions)
+    hand.move(actions, duration=2.0)
 
     input()
 
