@@ -135,7 +135,14 @@ class LeapHand(Robot):
                 self.bus.write("Position_P_Gain", motor, self.config.kP)
                 self.bus.write("Position_I_Gain", motor, self.config.kI)
                 self.bus.write("Position_D_Gain", motor, self.config.kD)
-                if motor in ["joint_0", "joint_4", "joint_8"]:
+                if motor in [
+                    "joint_0", 
+                    "joint_4", 
+                    "joint_8", 
+                    "if_rot",
+                    "mf_rot",
+                    "rf_rot",
+                ]:
                     self.bus.write("Position_P_Gain", motor, int(self.config.kP * 0.75))  # 75% of kP
                     self.bus.write("Position_D_Gain", motor, int(self.config.kD * 0.75))  # 75% of kD
                 self.bus.write("Current_Limit", motor, self.config.curr_lim) 
