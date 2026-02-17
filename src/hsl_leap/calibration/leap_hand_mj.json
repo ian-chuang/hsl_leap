@@ -1,114 +1,114 @@
 {
-    "if_rot": {
-        "id": 0,
+    "if_dip": {
         "drive_mode": 0,
         "homing_offset": 0,
-        "range_min": 1787,
-        "range_max": 2308
+        "id": 3,
+        "range_max": 3379,
+        "range_min": 1809
     },
     "if_mcp": {
-        "id": 1,
         "drive_mode": 0,
         "homing_offset": 1024,
-        "range_min": 1843,
-        "range_max": 3501
+        "id": 1,
+        "range_max": 3501,
+        "range_min": 1843
     },
     "if_pip": {
+        "drive_mode": 0,
+        "homing_offset": 0,
         "id": 2,
+        "range_max": 3276,
+        "range_min": 1718
+    },
+    "if_rot": {
         "drive_mode": 0,
         "homing_offset": 0,
-        "range_min": 1718,
-        "range_max": 3276
-    },
-    "if_dip": {
-        "id": 3,
-        "drive_mode": 0,
-        "homing_offset": 0,
-        "range_min": 1809,
-        "range_max": 3379
-    },
-    "mf_rot": {
-        "id": 4,
-        "drive_mode": 0,
-        "homing_offset": 0,
-        "range_min": 1787,
-        "range_max": 2308
-    },
-    "mf_mcp": {
-        "id": 5,
-        "drive_mode": 0,
-        "homing_offset": 1024,
-        "range_min": 1843,
-        "range_max": 3501
-    },
-    "mf_pip": {
-        "id": 6,
-        "drive_mode": 0,
-        "homing_offset": 0,
-        "range_min": 1718,
-        "range_max": 3276
+        "id": 0,
+        "range_max": 2730,
+        "range_min": 1365
     },
     "mf_dip": {
+        "drive_mode": 0,
+        "homing_offset": 0,
         "id": 7,
-        "drive_mode": 0,
-        "homing_offset": 0,
-        "range_min": 1809,
-        "range_max": 3379
+        "range_max": 3379,
+        "range_min": 1809
     },
-    "rf_rot": {
-        "id": 8,
-        "drive_mode": 0,
-        "homing_offset": 0,
-        "range_min": 1787,
-        "range_max": 2308
-    },
-    "rf_mcp": {
-        "id": 9,
+    "mf_mcp": {
         "drive_mode": 0,
         "homing_offset": 1024,
-        "range_min": 1843,
-        "range_max": 3501
+        "id": 5,
+        "range_max": 3501,
+        "range_min": 1843
     },
-    "rf_pip": {
-        "id": 10,
+    "mf_pip": {
         "drive_mode": 0,
         "homing_offset": 0,
-        "range_min": 1718,
-        "range_max": 3276
+        "id": 6,
+        "range_max": 3276,
+        "range_min": 1718
+    },
+    "mf_rot": {
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "id": 4,
+        "range_max": 2730,
+        "range_min": 1365
     },
     "rf_dip": {
-        "id": 11,
         "drive_mode": 0,
         "homing_offset": 0,
-        "range_min": 1809,
-        "range_max": 3379
+        "id": 11,
+        "range_max": 3379,
+        "range_min": 1809
     },
-    "th_cmc": {
-        "id": 12,
+    "rf_mcp": {
         "drive_mode": 0,
         "homing_offset": 1024,
-        "range_min": 1820,
-        "range_max": 3413
+        "id": 9,
+        "range_max": 3501,
+        "range_min": 1843
+    },
+    "rf_pip": {
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "id": 10,
+        "range_max": 3276,
+        "range_min": 1718
+    },
+    "rf_rot": {
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "id": 8,
+        "range_max": 2730,
+        "range_min": 1365
     },
     "th_axl": {
-        "id": 13,
         "drive_mode": 0,
         "homing_offset": 2048,
-        "range_min": 1924,
-        "range_max": 3058
+        "id": 13,
+        "range_max": 3413,
+        "range_min": 1820
     },
-    "th_mcp": {
-        "id": 14,
+    "th_cmc": {
         "drive_mode": 0,
-        "homing_offset": 0,
-        "range_min": 2132,
-        "range_max": 3286
+        "homing_offset": 1024,
+        "id": 12,
+        "range_max": 3413,
+        "range_min": 1820
     },
     "th_ipl": {
-        "id": 15,
         "drive_mode": 0,
         "homing_offset": 0,
-        "range_min": 2048,
-        "range_max": 3273
+        "id": 15,
+        "range_max": 3273,
+        "range_min": 1174
+    },
+    "th_mcp": {
+        "drive_mode": 0,
+        "homing_offset": 0,
+        "id": 14,
+        "range_max": 3640,
+        "range_min": 1741
     }
 }
