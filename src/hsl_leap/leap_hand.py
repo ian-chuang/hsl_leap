@@ -158,7 +158,7 @@ class LeapHand(Robot):
             raise ConnectionError(f"{self} is not connected.")
 
         # Read arm position
-        obs_dict = self.bus.sync_read("Present_Position", normalize=False) 
+        obs_dict = self.bus.sync_read("Present_Position", normalize=False, num_retry=3)
         obs_dict = {f"{motor}.pos": self.normalize(val) for motor, val in obs_dict.items()}
 
         return obs_dict
@@ -264,7 +264,7 @@ if __name__ == "__main__":
 
     hand = LeapHand(
         LeapHandConfig(
-            port="/dev/tty.usbserial-FTAO51BR",
+            port="/dev/ttyDXL_leap_hand",
         )
     )
     hand.connect()
