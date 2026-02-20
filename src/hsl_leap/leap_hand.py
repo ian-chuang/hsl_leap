@@ -251,6 +251,11 @@ class LeapHand(Robot):
         else:
             self.send_action(target)
 
+    def torque_off(self):
+        self.bus.disable_torque()
+
+    def torque_on(self):
+        self.bus.enable_torque()
 
     def disconnect(self):
         self.bus.disconnect(self.config.disable_torque_on_disconnect)

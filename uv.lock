@@ -907,6 +907,7 @@ sysid = [
     { name = "ipykernel" },
     { name = "mediapy" },
     { name = "mujoco", extra = ["sysid"] },
+    { name = "pyrealsense2" },
     { name = "tyro" },
     { name = "viser" },
 ]
@@ -918,6 +919,7 @@ requires-dist = [
     { name = "lerobot", specifier = ">=0.4.2" },
     { name = "mediapy", marker = "extra == 'sysid'", specifier = ">=1.2.6" },
     { name = "mujoco", extras = ["sysid"], marker = "extra == 'sysid'", specifier = ">=3.5.0" },
+    { name = "pyrealsense2", marker = "extra == 'sysid'", specifier = ">=2.56.5.9235" },
     { name = "tyro", marker = "extra == 'sysid'", specifier = ">=1.0.6" },
     { name = "viser", marker = "extra == 'sysid'", specifier = ">=1.0.21" },
 ]
@@ -2518,6 +2520,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f3/91/9c6ee907786a473bf81c5f53cf703ba0957b23ab84c264080fb5a450416f/pyparsing-3.3.2.tar.gz", hash = "sha256:c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc", size = 6851574, upload-time = "2026-01-21T03:57:59.36Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/10/bd/c038d7cc38edc1aa5bf91ab8068b63d4308c66c4c8bb3cbba7dfbc049f9c/pyparsing-3.3.2-py3-none-any.whl", hash = "sha256:850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d", size = 122781, upload-time = "2026-01-21T03:57:55.912Z" },
+]
+
+[[package]]
+name = "pyrealsense2"
+version = "2.56.5.9235"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a8/66/fa706f1d906a06d5e7015d5b412a48de9914549792eb5cb53c1854e06427/pyrealsense2-2.56.5.9235-cp313-cp313-manylinux1_x86_64.whl", hash = "sha256:c203bc8c79d5958889681408f1038ee69b0021fd8cba7ff2d4532fc90295c4fc", size = 11062717, upload-time = "2025-07-28T14:59:30.072Z" },
+    { url = "https://files.pythonhosted.org/packages/b2/88/19425ce6fa809d31a8d23f46dfa6aed9b16a881e8a00e0162d4b97ba1e64/pyrealsense2-2.56.5.9235-cp313-cp313-win_amd64.whl", hash = "sha256:ad8012f7fec843c3c6ec8904bfff048806dc7b4c7709e021c6ea75e83d8d5096", size = 7802471, upload-time = "2025-07-28T14:59:31.985Z" },
 ]
 
 [[package]]
