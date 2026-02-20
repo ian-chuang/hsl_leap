@@ -36,9 +36,9 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class Args:
-    width: int = 640
-    height: int = 480
-    fps: int = 30
+    width: int = 424
+    height: int = 240
+    fps: int = 60
     max_points: int = 150_000
     max_depth_m: float = 2.5
     point_size: float = 0.002
@@ -66,6 +66,8 @@ class Args:
         0.0,
         -1.5707,
     )
+    log_level: int = logging.INFO
+
 
 
 def _sample_points(
@@ -227,6 +229,8 @@ def _safe_disconnect(hand: LeapHand | None) -> None:
 
 
 def main(args: Args) -> None:
+    logging.basicConfig(level=args.log_level, format="%(asctime)s %(levelname)s: %(message)s")
+
     config = rs.config()
     if args.serial is not None:
         config.enable_device(args.serial)
@@ -242,6 +246,44 @@ def main(args: Args) -> None:
     align = rs.align(rs.stream.color)
     pointcloud = rs.pointcloud()
     pipeline.start(config)
+
+    # Log RealSense camera parameters (intrinsics + depth scale)
+    try:
+        profile = pipeline.get_active_profile()
+        device = profile.get_device()
+
+        # depth scale
+        try:
+            depth_sensor = device.first_depth_sensor()
+            depth_scale = depth_sensor.get_depth_scale()
+            logger.info("RealSense depth scale: %s meters", depth_scale)
+        except Exception:
+            logger.info("RealSense depth scale: unavailable")
+
+        def _log_intrinsics(stream_type, prof):
+            try:
+                sp = prof.get_stream(stream_type).as_video_stream_profile()
+                intr = sp.get_intrinsics()
+                coeffs = np.array(intr.coeffs) if hasattr(intr, "coeffs") else None
+                logger.info(
+                    "%s intrinsics: width=%d height=%d ppx=%.2f ppy=%.2f fx=%.2f fy=%.2f model=%s coeffs=%s",
+                    stream_type,
+                    intr.width,
+                    intr.height,
+                    intr.ppx,
+                    intr.ppy,
+                    intr.fx,
+                    intr.fy,
+                    getattr(intr, "model", None),
+                    coeffs,
+                )
+            except Exception as exc:
+                logger.warning("Failed to get intrinsics for %s: %s", stream_type, exc)
+
+        _log_intrinsics(rs.stream.depth, profile)
+        _log_intrinsics(rs.stream.color, profile)
+    except Exception as exc:
+        logger.warning("Failed to log RealSense camera parameters: %s", exc)
 
     server = viser.ViserServer()
 
