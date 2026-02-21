@@ -1,14 +1,14 @@
 import logging
 from functools import cached_property
 
-from lerobot.motors import Motor, MotorNormMode
+from hsl_leap.motors import Motor, MotorNormMode
 from hsl_leap.motors.dynamixel import (
     DynamixelMotorsBus,
     OperatingMode,
 )
 
 from dataclasses import dataclass
-from lerobot.robots import RobotConfig, Robot
+from hsl_leap.robots import RobotConfig, Robot
 
 import time
 import numpy as np
@@ -63,7 +63,6 @@ DEFAULT_ZERO_POSITION = {
 
 DEFAULT_MOTOR_CONFIG = {f"joint_{i}": Motor(i, "xc330-m288", MotorNormMode.RANGE_M100_100) for i in range(16)}
 
-@RobotConfig.register_subclass("leap_hand")
 @dataclass
 class LeapHandConfig(RobotConfig):
     # Port to connect to the arm
@@ -80,6 +79,7 @@ class LeapHandConfig(RobotConfig):
 
     def __post_init__(self):
         self.id = "leap_hand_mj" if self.use_mj_motor_config else "leap_hand"
+        print(f"setting calibration dir to {CALIBRATION_PATH}")
         self.calibration_dir = CALIBRATION_PATH
 
 
