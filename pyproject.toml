@@ -19,7 +19,8 @@ sysid = [
     "ipykernel>=7.2.0",
     "mediapy>=1.2.6",
     "mujoco[sysid]>=3.5.0",
+    "opencv-python>=4.13.0.92",
     "pyrealsense2>=2.56.5.9235",
     "tyro>=1.0.6",
-    "viser>=1.0.21",
+    "viser==1.0.21",
 ]
