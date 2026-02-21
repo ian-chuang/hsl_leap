@@ -23,7 +23,7 @@ sysid = [
     "viser==1.0.21",
 ]
 realsense = [
-    "opencv-python>=4.13.0.92",
+    "opencv-python",
     "pyrealsense2>=2.56.5.9235",
 ]
 

@@ -721,7 +721,7 @@ requires-dist = [
     { name = "ipykernel", marker = "extra == 'sysid'", specifier = ">=7.2.0" },
     { name = "mediapy", marker = "extra == 'sysid'", specifier = ">=1.2.6" },
     { name = "mujoco", extras = ["sysid"], marker = "extra == 'sysid'", specifier = ">=3.5.0" },
-    { name = "opencv-python", marker = "extra == 'realsense'", specifier = ">=4.13.0.92" },
+    { name = "opencv-python", marker = "extra == 'realsense'" },
     { name = "pyrealsense2", marker = "extra == 'realsense'", specifier = ">=2.56.5.9235" },
     { name = "tyro", marker = "extra == 'sysid'", specifier = ">=1.0.6" },
     { name = "viser", marker = "extra == 'sysid'", specifier = "==1.0.21" },
