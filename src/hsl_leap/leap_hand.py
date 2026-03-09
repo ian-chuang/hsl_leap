@@ -77,6 +77,8 @@ class LeapHandConfig(RobotConfig):
 
     use_mj_motor_config: bool = True
 
+    read_num_retries: int = 3
+
     def __post_init__(self):
         self.id = "leap_hand_mj" if self.use_mj_motor_config else "leap_hand"
         print(f"setting calibration dir to {CALIBRATION_PATH}")
@@ -158,7 +160,7 @@ class LeapHand(Robot):
             raise ConnectionError(f"{self} is not connected.")
 
         # Read arm position
-        obs_dict = self.bus.sync_read("Present_Position", normalize=False, num_retry=3)
+        obs_dict = self.bus.sync_read("Present_Position", normalize=False, num_retry=self.config.read_num_retries)
         obs_dict = {f"{motor}.pos": self.normalize(val) for motor, val in obs_dict.items()}
 
         return obs_dict
@@ -167,7 +169,7 @@ class LeapHand(Robot):
         if not self.is_connected:
             raise ConnectionError(f"{self} is not connected.")
         # Read arm position
-        obs_dict = self.bus.sync_read("Present_Position", normalize=True) 
+        obs_dict = self.bus.sync_read("Present_Position", normalize=True, num_retry=self.config.read_num_retries)
         obs_dict = {f"{motor}.pos": val / 100.0 for motor, val in obs_dict.items()}
         return obs_dict
 
