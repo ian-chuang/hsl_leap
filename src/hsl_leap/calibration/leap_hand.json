@@ -93,7 +93,7 @@
     "joint_13": {
         "id": 13,
         "drive_mode": 0,
-        "homing_offset": 2048,
+        "homing_offset": 0,
         "range_min": 1924,
         "range_max": 3058
     },

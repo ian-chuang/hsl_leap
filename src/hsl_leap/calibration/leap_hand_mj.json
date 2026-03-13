@@ -85,7 +85,7 @@
     },
     "th_axl": {
         "drive_mode": 0,
-        "homing_offset": 2048,
+        "homing_offset": 0,
         "id": 13,
         "range_max": 3413,
         "range_min": 1820
