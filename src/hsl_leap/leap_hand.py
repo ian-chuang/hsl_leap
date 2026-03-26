@@ -7,11 +7,12 @@ from hsl_leap.motors.dynamixel import (
     OperatingMode,
 )
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from hsl_leap.robots import RobotConfig, Robot
 
 import time
 import numpy as np
+import copy
 
 from typing import Any
 
@@ -19,7 +20,7 @@ from hsl_leap import CALIBRATION_PATH
 
 logger = logging.getLogger(__name__)
 
-MJ_ZERO_POSITION = {
+ZERO_POSITION = {
     "if_mcp.pos": 0.0,
     "if_rot.pos": 0.0,
     "if_pip.pos": 0.0,
@@ -38,7 +39,7 @@ MJ_ZERO_POSITION = {
     "th_ipl.pos": 0.0,
 }
 
-MJ_MOTOR_CONFIG = {
+MOTOR_CONFIG = {
     "if_mcp": Motor(1, "xc330-m288", MotorNormMode.RANGE_M100_100),
     "if_rot": Motor(0, "xc330-m288", MotorNormMode.RANGE_M100_100),
     "if_pip": Motor(2, "xc330-m288", MotorNormMode.RANGE_M100_100),
@@ -57,11 +58,24 @@ MJ_MOTOR_CONFIG = {
     "th_ipl": Motor(15, "xc330-m288", MotorNormMode.RANGE_M100_100),
 }
 
-DEFAULT_ZERO_POSITION = {
-    f"joint_{i}.pos": 0.0 for i in range(16)
+MOTOR_GAINS = {
+    "if_mcp": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 500},
+    "if_rot": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
+    "if_pip": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 350},
+    "if_dip": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
+    "mf_mcp": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 500},
+    "mf_rot": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
+    "mf_pip": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 350},
+    "mf_dip": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
+    "rf_mcp": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 500},
+    "rf_rot": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
+    "rf_pip": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 350},
+    "rf_dip": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
+    "th_cmc": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 500},
+    "th_axl": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
+    "th_mcp": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 350},
+    "th_ipl": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
 }
-
-DEFAULT_MOTOR_CONFIG = {f"joint_{i}": Motor(i, "xc330-m288", MotorNormMode.RANGE_M100_100) for i in range(16)}
 
 @dataclass
 class LeapHandConfig(RobotConfig):
@@ -69,19 +83,11 @@ class LeapHandConfig(RobotConfig):
     port: str
     baudrate: int = 4_000_000
     disable_torque_on_disconnect: bool = True
-
-    kP: int = 600
-    kI: int = 0
-    kD: int = 200
-    curr_lim: int = 550  # set this to 550 if you are using full motors!!!!
-
-    use_mj_motor_config: bool = True
-
+    gains: dict[str, dict[str, int]] = field(default_factory=lambda: copy.deepcopy(MOTOR_GAINS))
     read_num_retries: int = 3
-
     def __post_init__(self):
-        self.id = "leap_hand_mj" if self.use_mj_motor_config else "leap_hand"
-        print(f"setting calibration dir to {CALIBRATION_PATH}")
+        self.id = "leap_hand"
+        logging.info(f"setting calibration dir to {CALIBRATION_PATH}")
         self.calibration_dir = CALIBRATION_PATH
 
 
@@ -94,7 +100,7 @@ class LeapHand(Robot):
         self.config = config
         self.bus = DynamixelMotorsBus(
             port=self.config.port,
-            motors=MJ_MOTOR_CONFIG if self.config.use_mj_motor_config else DEFAULT_MOTOR_CONFIG,
+            motors=MOTOR_CONFIG,
             calibration=self.calibration,
         )
 
@@ -134,35 +140,23 @@ class LeapHand(Robot):
             self.bus.configure_motors()
             for motor in self.bus.motors:
                 self.bus.write("Operating_Mode", motor, OperatingMode.CURRENT_POSITION.value)
-                self.bus.write("Position_P_Gain", motor, self.config.kP)
-                self.bus.write("Position_I_Gain", motor, self.config.kI)
-                self.bus.write("Position_D_Gain", motor, self.config.kD)
-                if motor in [
-                    "joint_0", 
-                    "joint_4", 
-                    "joint_8", 
-                    "if_rot",
-                    "mf_rot",
-                    "rf_rot",
-                ]:
-                    self.bus.write("Position_P_Gain", motor, int(self.config.kP * 0.75))  # 75% of kP
-                    self.bus.write("Position_D_Gain", motor, int(self.config.kD * 0.75))  # 75% of kD
-                self.bus.write("Current_Limit", motor, self.config.curr_lim) 
+                self.bus.write("Position_P_Gain", motor, self.config.gains[motor]["kP"])
+                self.bus.write("Position_I_Gain", motor, self.config.gains[motor]["kI"])
+                self.bus.write("Position_D_Gain", motor, self.config.gains[motor]["kD"])
+                self.bus.write("Current_Limit", motor, self.config.gains[motor]["curr_lim"])
 
     def normalize(self, val: int) -> float:
-        return val / 4095.0 * 360.0 - 180.0
+        return np.deg2rad(val / 4095.0 * 360.0 - 180.0)
     
     def denormalize(self, val: float) -> int:
-        return int((val + 180.0) / 360.0 * 4095.0)
+        return int((np.rad2deg(val) + 180.0) / 360.0 * 4095.0)
     
     def get_observation(self) -> dict[str, Any]:
         if not self.is_connected:
             raise ConnectionError(f"{self} is not connected.")
-
         # Read arm position
         obs_dict = self.bus.sync_read("Present_Position", normalize=False, num_retry=self.config.read_num_retries)
         obs_dict = {f"{motor}.pos": self.normalize(val) for motor, val in obs_dict.items()}
-
         return obs_dict
     
     def get_observation_scaled(self) -> dict[str, Any]:
@@ -175,7 +169,6 @@ class LeapHand(Robot):
 
     def send_action(self, action: dict[str, Any]) -> dict[str, Any]:
         goal_pos = {key.removesuffix(".pos"): self.denormalize(val) for key, val in action.items()}
-
         goal_pos = {
             key: max(
                 min(
@@ -186,10 +179,8 @@ class LeapHand(Robot):
             )
             for key, val in goal_pos.items()
         }
-
         # Send goal position to the arm
         self.bus.sync_write("Goal_Position", goal_pos, normalize=False)
-
         return action
     
     def send_action_scaled(self, action: dict[str, Any]) -> dict[str, Any]:
@@ -201,7 +192,6 @@ class LeapHand(Robot):
     def move(self, action: dict[str, Any], duration: float = 1.0, scaled: bool = False) -> None:
         if not self.is_connected:
             raise ConnectionError(f"{self} is not connected.")
-
         if duration <= 0:
             # just send once
             if scaled:
@@ -209,24 +199,20 @@ class LeapHand(Robot):
             else:
                 self.send_action(action)
             return
-
         # ---- 1. Get current positions ----
         if scaled:
             current_obs = self.get_observation_scaled()
         else:
             current_obs = self.get_observation()
-
         # Only interpolate joints present in action
         start = {k: current_obs[k] for k in action.keys()}
         target = action
-
         # ---- 2. Timing setup ----
         control_rate = 100.0  # Hz (adjust if needed)
         dt = 1.0 / control_rate
         steps = max(1, int(duration * control_rate))
 
         start_time = time.time()
-
         # ---- 3. Interpolate ----
         for i in range(steps):
             alpha = (i + 1) / steps  # linear ramp 0 → 1
@@ -259,42 +245,30 @@ class LeapHand(Robot):
     def torque_on(self):
         self.bus.enable_torque()
 
+    def get_upper_pos_limits(self) -> dict[str, float]:
+        return {f"{motor}.pos": self.normalize(self.calibration[motor].range_max) for motor in self.bus.motors}
+    
+    def get_lower_pos_limits(self) -> dict[str, float]:
+        return {f"{motor}.pos": self.normalize(self.calibration[motor].range_min) for motor in self.bus.motors}
+
     def disconnect(self):
         self.bus.disconnect(self.config.disable_torque_on_disconnect)
 
 
 if __name__ == "__main__":
     import time
-    
     # allow debug logging
     logging.basicConfig(level=logging.DEBUG)
-
     hand = LeapHand(
         LeapHandConfig(
             port="/dev/ttyDXL_leap_hand",
         )
     )
     hand.connect()
-
     print(hand.get_observation())
-
-    
-    actions = MJ_ZERO_POSITION
-    # actions["th_ipl.pos"] = 30.0
-    # actions = {
-    #     f"joint_{i}.pos": 0.0 for i in range(16)
-    # }
-    # actions['joint_0.pos'] = -40
-
-    # actions = {
-    #     "joint_1.pos": 0.0,
-    # }
-
-    # hand.send_action(actions)
+    print(hand.get_upper_pos_limits())
+    print(hand.get_lower_pos_limits())
+    actions = ZERO_POSITION
     hand.move(actions, duration=2.0)
-
     input()
-
-    
-
     hand.disconnect()

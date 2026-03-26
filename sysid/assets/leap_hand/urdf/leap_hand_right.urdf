@@ -1,748 +1,877 @@
-<?xml version="1.0" encoding="utf-8"?>
-<robot name="leap_right">
-  <link name="base"/>
-  <joint name="base_joint" type="fixed">
-    <parent link="base"/>
-    <child link="palm_lower"/>
-    <origin xyz="0.057595 -0.033342 0.011278" rpy="3.14159265359 0 0"/>
-  </joint>
-
-  <link name="palm_lower">
-    <visual>
-      <origin xyz="-0.0200 0.02575 -0.0347" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/visual/palm_lower.obj"/>
-      </geometry>
-    </visual>
-    <collision>     <!-- palm_lower -->
-      <origin xyz="-0.009 0.008 -0.011" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.022 0.026 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.009 -0.037 -0.011" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.022 0.026 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.009 -0.082 -0.011" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.022 0.026 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.066 -0.078 -0.0115" rpy="0 0 -0.2967"/>
-      <geometry>
-        <box size="0.058 0.02 0.046"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.03 -0.035 -0.003" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.12 0.03"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.032 -0.035 -0.024" rpy="0 0.785 0"/>
-      <geometry>
-        <box size="0.01 0.12 0.02"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.048 -0.033 -0.0115" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.024 0.116 0.046"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.078 -0.053 -0.0115" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.044 0.052 0.046"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.098 -0.009 -0.006" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.004 0.036 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.078 -0.003 0.01" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.044 0.056 0.004"/>
-      </geometry>
-    </collision>
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="leap_rh">
+  <material name="black">
+    <color rgba="0.05 0.05 0.05 1" />
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1" />
+  </material>
+  <link name="base" />
+  <link name="palm">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.237"/>
-      <inertia ixx="0.000354094" ixy="-0.000001193" ixz="-0.000002445" iyy="0.000260915" iyz="-0.000002905" izz="0.000529257"/>
+      <origin xyz="-0.049542 -0.042914 -0.010227" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.237000" />
+      <inertia ixx="0.000293510" iyy="0.000192170" izz="0.000407160" ixy="-0.000035625" ixz="-0.000000439" iyz="-0.000006247" />
     </inertial>
-  </link>
-  <link name="mcp_joint">
     <visual>
-      <origin xyz="0.0084 0.0077 0.01465" rpy="0 0 0"/>
+      <origin xyz="-0.020000 0.025750 -0.034700" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/mcp_joint.obj"/>
+        <mesh filename="../mjcf/assets/palm_right.obj" />
       </geometry>
-    </visual>
-    <collision>      <!-- mcp_joint -->
-      <origin xyz="0 0.018 0.0147" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.006 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.027 0.042 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.028 0.04 0.02"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.0262 0.02 0.0146" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.006 0.02"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.0295 0.035 0.029" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.024 0.008"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 0.005 0.03" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 0.005 -0.001" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.044"/>
-      <inertia ixx="0.000011499" ixy="0.000003049" ixz="0.000000121" iyy="0.000007796" iyz="0.000000112" izz="0.000014759"/>
-    </inertial>
-  </link>
-  <link name="pip">
-    <visual>
-      <origin xyz="0.0096 0.0002 0.0007" rpy="-1.57079 -1.57079 0"/>
-      <geometry>
-        <mesh filename="meshes/visual/pip.obj"/>
-      </geometry>
-    </visual>
-    <collision>     <!-- pip -->
-      <origin xyz="0.0075 -0.0002 -0.011" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.026 0.022"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.032"/>
-      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004" iyy="0.000002862" iyz="0.000000011" izz="0.000004234"/>
-    </inertial>
-  </link>
-  <link name="dip">
-    <visual>
-      <origin xyz="0.0211 -0.0084 0.0097" rpy="-3.1415926 0 0"/>
-      <geometry>
-        <mesh filename="meshes/visual/dip.obj"/>
-      </geometry>
-    </visual>
-    <collision>     <!-- dip -->
-      <origin xyz="0 -0.02 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.016 0.006 0.026"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 -0.016 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.004 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 -0.0045 0.03" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 -0.0045 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0.0075 -0.035 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.022 0.026"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.037"/>
-      <inertia ixx="0.000005542" ixy="-0.000000607" ixz="-0.000000017" iyy="0.000005727" iyz="-0.000000023" izz="0.000006682"/>
-    </inertial>
-  </link>
-  <link name="fingertip">
-    <visual>
-      <origin xyz="0.0132 -0.0061 0.0144" rpy="3.1415926 0 0"/>
-      <geometry>
-        <mesh filename="meshes/visual/fingertip.obj"/>
-      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="-0.009000 0.008000 -0.011000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/collision/white_tip.obj"/>
+        <box size="0.022000 0.026000 0.034000" />
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.016"/>
-      <inertia ixx="0.000003368" ixy="0.000000115" ixz="0" iyy="0.000001556" iyz="0" izz="0.000002863"/>
-    </inertial>
+    <collision>
+      <origin xyz="-0.009000 -0.037000 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.022000 0.026000 0.034000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.009000 -0.082000 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.022000 0.026000 0.034000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.066000 -0.078000 -0.011500" rpy="0.000000 0.000000 -0.296699" />
+      <geometry>
+        <box size="0.058000 0.020000 0.046000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.030000 -0.035000 -0.003000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.120000 0.030000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.032000 -0.035000 -0.024000" rpy="0.000000 0.784999 0.000000" />
+      <geometry>
+        <box size="0.010000 0.120000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.048000 -0.033000 -0.011500" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.024000 0.116000 0.046000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.078000 -0.053000 -0.011500" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.044000 0.052000 0.046000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.098000 -0.009000 -0.006000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.004000 0.036000 0.034000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.078000 -0.003000 0.010000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.044000 0.056000 0.004000" />
+      </geometry>
+    </collision>
   </link>
-
-  <joint name="joint_0" type="revolute">
-    <origin xyz="-0.0122 0.03810 0.01450" rpy="-1.57079 0 1.57079"/>
-    <parent link="mcp_joint"/>
-    <child link="pip"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.4" upper="0.4"/>
-    <joint_properties friction="0.0"/>
+  <joint name="base_palm_fixed" type="fixed">
+    <parent link="base" />
+    <child link="palm" />
+    <origin xyz="0.057595 -0.033342 0.011278" rpy="3.141593 0.000000 0.000000" />
   </joint>
-  <joint name="joint_1" type="revolute">
-    <origin xyz="-0.0070 0.0230 -0.0187" rpy="1.57079 1.57079 0"/>
-    <parent link="palm_lower"/>
-    <child link="mcp_joint"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.314" upper="2.23"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <joint name="joint_2" type="revolute">
-    <origin xyz="0.015 0.0143 -0.013" rpy="1.57079 -1.57079 0"/>
-    <parent link="pip"/>
-    <child link="dip"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.506" upper="1.885"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <joint name="joint_3" type="revolute">
-    <origin xyz="0 -0.0361 0.0002" rpy="0 0 0"/>
-    <parent link="dip"/>
-    <child link="fingertip"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.366" upper="2.042"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <link name="mcp_joint_2">
-    <visual>
-      <origin xyz="0.0084 0.0077 0.01465" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/visual/mcp_joint.obj"/>
-      </geometry>
-    </visual>
-    <collision>      <!-- mcp_joint -->
-      <origin xyz="0 0.018 0.0147" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.006 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.027 0.042 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.028 0.04 0.02"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.0262 0.02 0.0146" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.006 0.02"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.0295 0.035 0.029" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.024 0.008"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 0.005 0.03" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 0.005 -0.001" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
+  <link name="if_bs">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.044"/>
-      <inertia ixx="0.000011499" ixy="0.000003049" ixz="0.000000121" iyy="0.000007796" iyz="0.000000112" izz="0.000014759"/>
+      <origin xyz="-0.022516 0.033882 0.016359" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.044000" />
+      <inertia ixx="0.000013160" iyy="0.000010301" izz="0.000017400" ixy="0.000004266" ixz="0.000000507" iyz="-0.000000162" />
     </inertial>
-  </link>
-  <link name="pip_2">
     <visual>
-      <origin xyz="0.0096 0.0003 0.0007" rpy="-1.57079 -1.57079 0"/>
+      <origin xyz="0.008400 0.007700 0.014650" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/pip.obj"/>
+        <mesh filename="../mjcf/assets/base.obj" />
       </geometry>
-    </visual>
-    <collision>     <!-- pip -->
-      <origin xyz="0.0075 -0.0002 -0.011" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.026 0.022"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.032"/>
-      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004" iyy="0.000002862" iyz="0.000000011" izz="0.000004234"/>
-    </inertial>
-  </link>
-  <link name="dip_2">
-    <visual>
-      <origin xyz="0.0211 -0.0084 0.0097" rpy="-3.14159 0 0"/>
-      <geometry>
-        <mesh filename="meshes/visual/dip.obj"/>
-      </geometry>
-    </visual>
-    <collision>     <!-- dip -->
-      <origin xyz="0 -0.02 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.016 0.006 0.026"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 -0.016 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.004 0.034"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 -0.0045 0.03" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 -0.0045 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0.0075 -0.035 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.022 0.026"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.037"/>
-      <inertia ixx="0.000005542" ixy="-0.000000607" ixz="-0.000000017" iyy="0.000005727" iyz="-0.000000023" izz="0.000006682"/>
-    </inertial>
-  </link>
-  <link name="fingertip_2">
-    <visual>
-      <origin xyz="0.0132 -0.0061 0.01450" rpy="3.14159 0 0"/>
-      <geometry>
-        <mesh filename="meshes/visual/fingertip.obj"/>
-      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.000000 0.018000 0.014700" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/collision/white_tip.obj"/>
+        <box size="0.020000 0.006000 0.034000" />
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.016"/>
-      <inertia ixx="0.000003368" ixy="0.000000115" ixz="0" iyy="0.000001556" iyz="0" izz="0.000002863"/>
-    </inertial>
+    <collision>
+      <origin xyz="-0.027000 0.042000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.028000 0.040000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.026200 0.020000 0.014600" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.034000 0.006000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.029500 0.035000 0.029000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.024000 0.008000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.005000 0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.005000 -0.001000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
   </link>
-  <joint name="joint_4" type="revolute">
-    <origin xyz="-0.0122 0.0381 0.0145" rpy="-1.57079 0 1.57079"/>
-    <parent link="mcp_joint_2"/>
-    <child link="pip_2"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.4" upper="0.4"/>
-    <joint_properties friction="0.0"/>
+  <joint name="if_mcp" type="revolute">
+    <parent link="palm" />
+    <child link="if_bs" />
+    <origin xyz="-0.007000 0.023000 -0.018700" rpy="1.570796 1.570796 0.000003" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.314000" upper="2.230000" />
   </joint>
-  <joint name="joint_5" type="revolute">
-    <origin xyz="-0.0071 -0.0224 -0.0187" rpy="1.57079 1.57079 0"/>
-    <parent link="palm_lower"/>
-    <child link="mcp_joint_2"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.314" upper="2.23"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <joint name="joint_6" type="revolute">
-    <origin xyz="0.015 0.0143 -0.013" rpy="1.57079 -1.57079 0"/>
-    <parent link="pip_2"/>
-    <child link="dip_2"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.506" upper="1.885"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <joint name="joint_7" type="revolute">
-    <origin xyz="0 -0.0361 0.0002" rpy="0 0 0"/>
-    <parent link="dip_2"/>
-    <child link="fingertip_2"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.366" upper="2.042"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <link name="mcp_joint_3">
+  <link name="if_px">
+    <inertial>
+      <origin xyz="0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.032000" />
+      <inertia ixx="0.000003093" iyy="0.000004373" izz="0.000004885" ixy="0.000000000" ixz="-0.000000000" iyz="0.000000000" />
+    </inertial>
     <visual>
-      <origin xyz="0.0084 0.0077 0.01465" rpy="0 0 0"/>
+      <origin xyz="0.009600 0.000200 0.000700" rpy="-1.570796 -1.570796 0.000003" />
       <geometry>
-        <mesh filename="meshes/visual/mcp_joint.obj"/>
+        <mesh filename="../mjcf/assets/proximal.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
-    <collision>      <!-- mcp_joint -->
-      <origin xyz="0 0.018 0.0147" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.006 0.034"/>
-      </geometry>
-    </collision>
     <collision>
-      <origin xyz="-0.027 0.042 0.015" rpy="0 0 0"/>
+      <origin xyz="0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.028 0.04 0.02"/>
+        <box size="0.034000 0.026000 0.022000" />
       </geometry>
     </collision>
-    <collision>
-      <origin xyz="-0.0262 0.02 0.0146" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.006 0.02"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="-0.0295 0.035 0.029" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.024 0.008"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 0.005 0.03" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0 0.005 -0.001" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.044"/>
-      <inertia ixx="0.000011499" ixy="0.000003049" ixz="0.000000121" iyy="0.000007796" iyz="0.000000112" izz="0.000014759"/>
-    </inertial>
   </link>
-  <link name="pip_3">
+  <joint name="if_rot" type="revolute">
+    <parent link="if_bs" />
+    <child link="if_px" />
+    <origin xyz="-0.012200 0.038100 0.014500" rpy="-1.570790 0.000000 1.570790" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-1.047000" upper="1.047000" />
+  </joint>
+  <link name="if_md">
+    <inertial>
+      <origin xyz="0.005422 -0.029148 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.037000" />
+      <inertia ixx="0.000007676" iyy="0.000005999" izz="0.000008160" ixy="0.000001174" ixz="-0.000000000" iyz="-0.000000000" />
+    </inertial>
     <visual>
-      <origin xyz="0.0096 0.0003 0.0007" rpy="-1.57079 -1.57079 0"/>
+      <origin xyz="0.021100 -0.008400 0.009700" rpy="-3.141593 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/pip.obj"/>
+        <mesh filename="../mjcf/assets/medial.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
-    <collision>     <!-- pip -->
-      <origin xyz="0.0075 -0.0002 -0.011" rpy="0 0 0"/>
+    <collision>
+      <origin xyz="0.000000 -0.020000 0.015000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.034 0.026 0.022"/>
+        <box size="0.016000 0.006000 0.026000" />
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.032"/>
-      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004" iyy="0.000002862" iyz="0.000000011" izz="0.000004234"/>
-    </inertial>
+    <collision>
+      <origin xyz="0.000000 -0.016000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.004000 0.034000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.004500 0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.004500 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.007500 -0.035000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.034000 0.022000 0.026000" />
+      </geometry>
+    </collision>
   </link>
-  <link name="dip_3">
+  <joint name="if_pip" type="revolute">
+    <parent link="if_px" />
+    <child link="if_md" />
+    <origin xyz="0.015000 0.014300 -0.013000" rpy="1.570796 -1.570796 -0.000003" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.506000" upper="1.885000" />
+  </joint>
+  <link name="if_ds">
+    <inertial>
+      <origin xyz="-0.000879 -0.027019 0.014594" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.016000" />
+      <inertia ixx="0.000003711" iyy="0.000001660" izz="0.000003024" ixy="-0.000000125" ixz="-0.000000001" iyz="-0.000000015" />
+    </inertial>
     <visual>
-      <origin xyz="0.0211 -0.0084 0.0097" rpy="-3.14159 0 0"/>
+      <origin xyz="0.013200 -0.006100 0.014400" rpy="3.141593 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/dip.obj"/>
+        <mesh filename="../mjcf/assets/distal.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
-    <collision>     <!-- dip -->
-      <origin xyz="0 -0.02 0.015" rpy="0 0 0"/>
+    <collision>
+      <origin xyz="0.000000 -0.017000 0.015000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.016 0.006 0.026"/>
+        <box size="0.020000 0.006000 0.030000" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="0 -0.016 0.015" rpy="0 0 0"/>
+      <origin xyz="0.000000 -0.006000 0.030000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.02 0.004 0.034"/>
+        <box size="0.014000 0.022000 0.004000" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="0 -0.0045 0.03" rpy="0 0 0"/>
+      <origin xyz="0.000000 -0.006000 -0.001000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.014 0.02 0.004"/>
+        <box size="0.014000 0.022000 0.004000" />
       </geometry>
     </collision>
-    <collision>
-      <origin xyz="0 -0.0045 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.02 0.004"/>
-      </geometry>
-    </collision>
-    <collision>
-      <origin xyz="0.0075 -0.035 0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.034 0.022 0.026"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.037"/>
-      <inertia ixx="0.000005542" ixy="-0.000000607" ixz="-0.000000017" iyy="0.000005727" iyz="-0.000000023" izz="0.000006682"/>
-    </inertial>
-  </link>
-  <link name="fingertip_3">
     <visual>
-      <origin xyz="0.0132 -0.0061 0.0145" rpy="3.14159 0 0"/>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/fingertip.obj"/>
+        <mesh filename="../mjcf/assets/tip.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
- 
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/collision/white_tip.obj"/>
+        <mesh filename="../mjcf/assets/tip.obj" />
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.016"/>
-      <inertia ixx="0.000003368" ixy="0.000000115" ixz="0" iyy="0.000001556" iyz="0" izz="0.000002863"/>
-    </inertial>
   </link>
-  <joint name="joint_8" type="revolute">
-    <origin xyz="-0.0122 0.0381 0.0145" rpy="-1.57079 0 1.57079"/>
-    <parent link="mcp_joint_3"/>
-    <child link="pip_3"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.4" upper="0.4"/>
-    <joint_properties friction="0.0"/>
+  <joint name="if_dip" type="revolute">
+    <parent link="if_md" />
+    <child link="if_ds" />
+    <origin xyz="0.000000 -0.036100 0.000200" rpy="0.000000 0.000000 0.000000" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.366000" upper="2.042000" />
   </joint>
-  <joint name="joint_9" type="revolute">
-    <origin xyz="-0.00709 -0.0678 -0.0187" rpy="1.57079 1.57079 0"/>
-    <parent link="palm_lower"/>
-    <child link="mcp_joint_3"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.314" upper="2.23"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <joint name="joint_10" type="revolute">
-    <origin xyz="0.015 0.0143 -0.013" rpy="1.57079 -1.57079 0"/>
-    <parent link="pip_3"/>
-    <child link="dip_3"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.506" upper="1.885"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <joint name="joint_11" type="revolute">
-    <origin xyz="0 -0.03609 0.0002" rpy="0 0 0"/>
-    <parent link="dip_3"/>
-    <child link="fingertip_3"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.366" upper="2.042"/>
-    <joint_properties friction="0.0"/>
-  </joint>
-  <link name="thumb_temp_base">
+  <link name="mf_bs">
+    <inertial>
+      <origin xyz="-0.022516 0.033882 0.016359" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.044000" />
+      <inertia ixx="0.000013160" iyy="0.000010301" izz="0.000017400" ixy="0.000004266" ixz="0.000000507" iyz="-0.000000162" />
+    </inertial>
     <visual>
-      <origin xyz="-0.0053 0.0003 0.00078" rpy="-1.57079 -1.57079 0"/>
+      <origin xyz="0.008400 0.007700 0.014650" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/pip.obj"/>
+        <mesh filename="../mjcf/assets/base.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
-    <collision>     <!-- pip -->
-      <origin xyz="0.0075 -0.0002 -0.011" rpy="0 0 0"/>
+    <collision>
+      <origin xyz="0.000000 0.018000 0.014700" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.034 0.026 0.022"/>
+        <box size="0.020000 0.006000 0.034000" />
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.032"/>
-      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004" iyy="0.000002862" iyz="0.000000011" izz="0.000004234"/>
-    </inertial>
+    <collision>
+      <origin xyz="-0.027000 0.042000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.028000 0.040000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.026200 0.020000 0.014600" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.034000 0.006000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.029500 0.035000 0.029000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.024000 0.008000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.005000 0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.005000 -0.001000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
   </link>
-  <link name="thumb_pip">
+  <joint name="mf_mcp" type="revolute">
+    <parent link="palm" />
+    <child link="mf_bs" />
+    <origin xyz="-0.007100 -0.022400 -0.018700" rpy="1.570796 1.570796 0.000003" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.314000" upper="2.230000" />
+  </joint>
+  <link name="mf_px">
+    <inertial>
+      <origin xyz="0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.032000" />
+      <inertia ixx="0.000003093" iyy="0.000004373" izz="0.000004885" ixy="0.000000000" ixz="-0.000000000" iyz="0.000000000" />
+    </inertial>
     <visual>
-      <origin xyz="0.01196 0 -0.0158" rpy="1.57079 0 0"/>
+      <origin xyz="0.009600 0.000300 0.000700" rpy="-1.570796 -1.570796 0.000003" />
       <geometry>
-        <mesh filename="meshes/visual/thumb_pip.obj"/>
+        <mesh filename="../mjcf/assets/proximal.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
-    <collision>     <!-- thumb_pip -->
-      <origin xyz="0 0 -0.0015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.018 0.033 0.004"/>
-      </geometry>
-    </collision>
     <collision>
-      <origin xyz="0 -0.015 -0.013" rpy="0 0 0"/>
+      <origin xyz="0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.014 0.004 0.02"/>
+        <box size="0.034000 0.026000 0.022000" />
       </geometry>
     </collision>
-    <collision>
-      <origin xyz="0 0.015 -0.013" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.014 0.004 0.02"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.003"/>
-      <inertia ixx="0.000000593" ixy="0" ixz="0" iyy="0.000000549" iyz="0" izz="0.000000224"/>
-    </inertial>
   </link>
-  <link name="thumb_dip">
+  <joint name="mf_rot" type="revolute">
+    <parent link="mf_bs" />
+    <child link="mf_px" />
+    <origin xyz="-0.012200 0.038100 0.014500" rpy="-1.570790 0.000000 1.570790" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-1.047000" upper="1.047000" />
+  </joint>
+  <link name="mf_md">
+    <inertial>
+      <origin xyz="0.005422 -0.029148 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.037000" />
+      <inertia ixx="0.000007676" iyy="0.000005999" izz="0.000008160" ixy="0.000001174" ixz="-0.000000000" iyz="-0.000000000" />
+    </inertial>
     <visual>
-      <origin xyz="0.0439 0.0579 -0.0086" rpy="0 0 0"/>
+      <origin xyz="0.021100 -0.008400 0.009700" rpy="-3.141590 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/thumb_dip.obj"/>
+        <mesh filename="../mjcf/assets/medial.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
-    <collision>     <!-- thumb_dip -->
-      <origin xyz="0 0.0105 -0.014" rpy="0 0 0"/>
+    <collision>
+      <origin xyz="0.000000 -0.020000 0.015000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.02 0.04 0.024"/>
+        <box size="0.016000 0.006000 0.026000" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="0 0.031 -0.015" rpy="0 0 0"/>
+      <origin xyz="0.000000 -0.016000 0.015000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.02 0.004 0.032"/>
+        <box size="0.020000 0.004000 0.034000" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="0 0.042 0.001" rpy="0 0 0"/>
+      <origin xyz="0.000000 -0.004500 0.030000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.014 0.02 0.004"/>
+        <box size="0.014000 0.020000 0.004000" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="0 0.042 -0.029" rpy="0 0 0"/>
+      <origin xyz="0.000000 -0.004500 0.000000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.014 0.02 0.004"/>
+        <box size="0.014000 0.020000 0.004000" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="-0.0135 0.0175 -0.011656" rpy="0 0 0"/>
+      <origin xyz="0.007500 -0.035000 0.015000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <box size="0.01 0.024 0.018"/>
+        <box size="0.034000 0.022000 0.026000" />
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.038"/>
-      <inertia ixx="0.000008474" ixy="0.000000241" ixz="0.000000026" iyy="0.000003841" iyz="0.000000025" izz="0.000007679"/>
-    </inertial>
   </link>
-  <link name="thumb_fingertip">
+  <joint name="mf_pip" type="revolute">
+    <parent link="mf_px" />
+    <child link="mf_md" />
+    <origin xyz="0.015000 0.014300 -0.013000" rpy="1.570796 -1.570796 -0.000003" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.506000" upper="1.885000" />
+  </joint>
+  <link name="mf_ds">
+    <inertial>
+      <origin xyz="-0.000879 -0.027019 0.014594" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.016000" />
+      <inertia ixx="0.000003711" iyy="0.000001660" izz="0.000003024" ixy="-0.000000125" ixz="-0.000000001" iyz="-0.000000015" />
+    </inertial>
     <visual>
-      <origin xyz="0.0625 0.0784 0.0489" rpy="0 0 0"/>
+      <origin xyz="0.013200 -0.006100 0.014500" rpy="3.141590 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/visual/thumb_fingertip.obj"/>
+        <mesh filename="../mjcf/assets/distal.obj" />
       </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
     </visual>
-    <collision>     <!-- thumb_fingertip -->
-      <origin xyz="0 -0.0085 -0.015" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.02 0.036 0.024"/>
-      </geometry>
-    </collision>
-
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.000000 -0.017000 0.015000" rpy="0.000000 0.000000 0.000000" />
       <geometry>
-        <mesh filename="meshes/collision/white_tip_thumb.obj"/>
+        <box size="0.020000 0.006000 0.030000" />
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.049"/>
-      <inertia ixx="0.000020372" ixy="-0.000000489" ixz="-0.00000003" iyy="0.000004336" iyz="-0.000000097" izz="0.000019845"/>
-    </inertial>
+    <collision>
+      <origin xyz="0.000000 -0.006000 0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.022000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.006000 -0.001000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.022000 0.004000" />
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/tip.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/tip.obj" />
+      </geometry>
+    </collision>
   </link>
-  <joint name="joint_12" type="revolute">
-    <origin xyz="-0.0693 -0.0012 -0.0216" rpy="0 1.57079 0"/>
-    <parent link="palm_lower"/>
-    <child link="thumb_temp_base"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.349" upper="2.094"/>
-    <joint_properties friction="0.0"/>
+  <joint name="mf_dip" type="revolute">
+    <parent link="mf_md" />
+    <child link="mf_ds" />
+    <origin xyz="0.000000 -0.036100 0.000200" rpy="0.000000 0.000000 0.000000" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.366000" upper="2.042000" />
   </joint>
-  <joint name="joint_13" type="revolute">
-    <origin xyz="0 0.0143 -0.013" rpy="1.57079 -1.57079 0"/>
-    <parent link="thumb_temp_base"/>
-    <child link="thumb_pip"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="-0.19" upper="1.55"/>
-    <joint_properties friction="0.0"/>
+  <link name="rf_bs">
+    <inertial>
+      <origin xyz="-0.022516 0.033882 0.016359" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.044000" />
+      <inertia ixx="0.000013160" iyy="0.000010301" izz="0.000017400" ixy="0.000004266" ixz="0.000000507" iyz="-0.000000162" />
+    </inertial>
+    <visual>
+      <origin xyz="0.008400 0.007700 0.014650" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/base.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.018000 0.014700" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.006000 0.034000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.027000 0.042000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.028000 0.040000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.026200 0.020000 0.014600" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.034000 0.006000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.029500 0.035000 0.029000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.024000 0.008000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.005000 0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.005000 -0.001000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rf_mcp" type="revolute">
+    <parent link="palm" />
+    <child link="rf_bs" />
+    <origin xyz="-0.007090 -0.067800 -0.018700" rpy="1.570796 1.570796 0.000003" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.314000" upper="2.230000" />
   </joint>
-  <joint name="joint_14" type="revolute">
-    <origin xyz="0 0.0145 -0.017" rpy="-1.57079 0 0"/>
-    <parent link="thumb_pip"/>
-    <child link="thumb_dip"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="0.13" upper="1.90"/>
-    <joint_properties friction="0.0"/>
+  <link name="rf_px">
+    <inertial>
+      <origin xyz="0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.032000" />
+      <inertia ixx="0.000003093" iyy="0.000004373" izz="0.000004885" ixy="0.000000000" ixz="-0.000000000" iyz="0.000000000" />
+    </inertial>
+    <visual>
+      <origin xyz="0.009600 0.000300 0.000700" rpy="-1.570796 -1.570796 0.000003" />
+      <geometry>
+        <mesh filename="../mjcf/assets/proximal.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.034000 0.026000 0.022000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rf_rot" type="revolute">
+    <parent link="rf_bs" />
+    <child link="rf_px" />
+    <origin xyz="-0.012200 0.038100 0.014500" rpy="-1.570790 0.000000 1.570790" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-1.047000" upper="1.047000" />
   </joint>
-  <joint name="joint_15" type="revolute">
-    <origin xyz="0 0.0466 0.0002" rpy="0 0 3.14159"/>
-    <parent link="thumb_dip"/>
-    <child link="thumb_fingertip"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="0.95" velocity="8.48" lower="0" upper="1.88"/>
-    <joint_properties friction="0.0"/>
+  <link name="rf_md">
+    <inertial>
+      <origin xyz="0.005422 -0.029148 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.037000" />
+      <inertia ixx="0.000007676" iyy="0.000005999" izz="0.000008160" ixy="0.000001174" ixz="-0.000000000" iyz="-0.000000000" />
+    </inertial>
+    <visual>
+      <origin xyz="0.021100 -0.008400 0.009700" rpy="-3.141590 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/medial.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 -0.020000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.016000 0.006000 0.026000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.016000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.004000 0.034000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.004500 0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.004500 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.007500 -0.035000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.034000 0.022000 0.026000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rf_pip" type="revolute">
+    <parent link="rf_px" />
+    <child link="rf_md" />
+    <origin xyz="0.015000 0.014300 -0.013000" rpy="1.570796 -1.570796 -0.000003" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.506000" upper="1.885000" />
   </joint>
-
-  <!--  virtual auxiliary link-->
-  <link name="thumb_tip_head"/>
-  <link name="index_tip_head"/>
-  <link name="middle_tip_head"/>
-  <link name="ring_tip_head"/>
-  <joint name="thumb_tip" type="fixed">
-    <parent link="thumb_fingertip"/>
-    <child link="thumb_tip_head"/>
-    <origin rpy="0 0 0" xyz="0 -0.06 -0.015"/>
+  <link name="rf_ds">
+    <inertial>
+      <origin xyz="-0.000879 -0.027019 0.014594" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.016000" />
+      <inertia ixx="0.000003711" iyy="0.000001660" izz="0.000003024" ixy="-0.000000125" ixz="-0.000000001" iyz="-0.000000015" />
+    </inertial>
+    <visual>
+      <origin xyz="0.013200 -0.006100 0.014500" rpy="3.141590 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/distal.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 -0.017000 0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.006000 0.030000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.006000 0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.022000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.006000 -0.001000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.022000 0.004000" />
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/tip.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/tip.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rf_dip" type="revolute">
+    <parent link="rf_md" />
+    <child link="rf_ds" />
+    <origin xyz="0.000000 -0.036090 0.000200" rpy="0.000000 0.000000 0.000000" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.366000" upper="2.042000" />
   </joint>
-  <joint name="index_tip" type="fixed">
-    <parent link="fingertip"/>
-    <child link="index_tip_head"/>
-    <origin rpy="0 0 0" xyz="0 -0.048 0.015"/>
+  <link name="th_mp">
+    <inertial>
+      <origin xyz="0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.032000" />
+      <inertia ixx="0.000003093" iyy="0.000004373" izz="0.000004885" ixy="0.000000000" ixz="-0.000000000" iyz="0.000000000" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.005300 0.000300 0.000780" rpy="-1.570796 -1.570796 0.000003" />
+      <geometry>
+        <mesh filename="../mjcf/assets/proximal.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.007500 -0.000200 -0.011000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.034000 0.026000 0.022000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="th_cmc" type="revolute">
+    <parent link="palm" />
+    <child link="th_mp" />
+    <origin xyz="-0.069300 -0.001200 -0.021600" rpy="0.000000 1.570796 0.000000" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.349000" upper="2.094000" />
   </joint>
-  <joint name="middle_tip" type="fixed">
-    <parent link="fingertip_2"/>
-    <child link="middle_tip_head"/>
-    <origin rpy="0 0 0" xyz="0 -0.048 0.015"/>
+  <link name="th_bs">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.007081" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.003000" />
+      <inertia ixx="0.000000619" iyy="0.000000215" izz="0.000000535" ixy="0.000000000" ixz="0.000000000" iyz="-0.000000000" />
+    </inertial>
+    <visual>
+      <origin xyz="0.011960 0.000000 -0.015800" rpy="1.570791 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/thumb_base.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 -0.001500" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.018000 0.033000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.015000 -0.013000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.004000 0.020000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.015000 -0.013000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.004000 0.020000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="th_axl" type="revolute">
+    <parent link="th_mp" />
+    <child link="th_bs" />
+    <origin xyz="0.000000 0.014300 -0.013000" rpy="1.570796 -1.570796 -0.000003" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.349000" upper="2.094000" />
   </joint>
-  <joint name="ring_tip" type="fixed">
-    <parent link="fingertip_3"/>
-    <child link="ring_tip_head"/>
-    <origin rpy="0 0 0" xyz="0 -0.048 0.015"/>
+  <link name="th_px">
+    <inertial>
+      <origin xyz="-0.002059 0.015912 -0.013733" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.038000" />
+      <inertia ixx="0.000009814" iyy="0.000004365" izz="0.000009381" ixy="0.000000124" ixz="0.000000163" iyz="0.000000030" />
+    </inertial>
+    <visual>
+      <origin xyz="0.043900 0.057900 -0.008600" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/thumb_proximal.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.010500 -0.014000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.040000 0.024000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.031000 -0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.004000 0.032000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.042000 0.001000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 0.042000 -0.029000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.014000 0.020000 0.004000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.013500 0.017500 -0.011656" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.010000 0.024000 0.018000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="th_mcp" type="revolute">
+    <parent link="th_bs" />
+    <child link="th_px" />
+    <origin xyz="0.000000 0.014500 -0.017000" rpy="-1.570791 0.000000 0.000000" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-0.470000" upper="2.443000" />
+  </joint>
+  <link name="th_ds">
+    <inertial>
+      <origin xyz="0.000962 -0.024203 -0.014419" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.049000" />
+      <inertia ixx="0.000020480" iyy="0.000004778" izz="0.000020716" ixy="-0.000001009" ixz="-0.000000206" iyz="0.000000097" />
+    </inertial>
+    <visual>
+      <origin xyz="0.062500 0.078400 0.048900" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/thumb_distal.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 -0.008500 -0.015000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.036000 0.024000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.000000 -0.029000 -0.014000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.020000 0.004000 0.030000" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.015000 -0.017500 -0.011500" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.008000 0.024000 0.018000" />
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/thumb_tip.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <mesh filename="../mjcf/assets/thumb_tip.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="th_ipl" type="revolute">
+    <parent link="th_px" />
+    <child link="th_ds" />
+    <origin xyz="0.000000 0.046600 0.000200" rpy="0.000000 0.000000 3.141590" />
+    <axis xyz="0.000000 0.000000 -1.000000" />
+    <!-- <dynamics damping="0.030000" friction="0.001000" /> -->
+    <limit effort="0.5" velocity="8" lower="-1.340000" upper="1.880000" />
   </joint>
 </robot>

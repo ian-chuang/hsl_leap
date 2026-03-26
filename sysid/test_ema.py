@@ -47,9 +47,9 @@ class Args:
 	use_mj_motor_config: bool = True
 	read_hz: float = 20.0
 	send_hz: float = 20.0
-	default_clip_rad: float = 0.05
+	default_clip_rad: float = 0.2
 	torque_off_on_start: bool = False
-	default_ema: float = 0.2
+	default_ema: float = 0.3
 	log_level: int = logging.INFO
 
 

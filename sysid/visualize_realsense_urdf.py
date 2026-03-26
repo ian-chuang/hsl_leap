@@ -57,14 +57,14 @@ class Args:
     default_robot_position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
     default_robot_orientation: Tuple[float, float, float] = (0.0, 0.0, 0.0)
     default_camera_position: Tuple[float, float, float] = (
-        -0.17,
-        0.023,
-        0.436,
+        -0.165,
+        0.195,
+        0.395,
     )
     default_camera_orientation: Tuple[float, float, float] = (
-        -2.62,
-        0.0,
-        -1.5707,
+        -2.49,
+        0.2,
+        -2.55,
     )
     log_level: int = logging.INFO
 
