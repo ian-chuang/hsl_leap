@@ -56,6 +56,8 @@ def _run_square_test(
 	sample_hz: float,
 	record_s: float,
 	period_s: float,
+	current_limit: int,
+	amplitude: float,
 ) -> dict[str, np.ndarray]:
 	cal = hand.calibration[motor]
 	rng_min = int(cal.range_min)
@@ -74,7 +76,7 @@ def _run_square_test(
 		start = time.monotonic()
 		t = start - t0
 		phase = (t % period_s) / period_s
-		action = 0.2 if phase < 0.5 else 0.0
+		action = amplitude if phase < 0.5 else 0.0
 		desired = int(round(((action + 1.0) / 2.0) * (rng_max - rng_min) + rng_min))
 
 		hand.bus.sync_write("Goal_Position", {motor: desired}, normalize=False)
@@ -82,6 +84,14 @@ def _run_square_test(
 		traj = _sample_register(hand, "Position_Trajectory", motor)
 		pres = _sample_register(hand, "Present_Position", motor)
 		cur = _sample_register(hand, "Present_Current", motor)
+
+		if abs(cur) >= current_limit * 0.9:
+			logger.warning(
+				"Current near limit: motor=%s current_lsb=%.1f limit_lsb=%d",
+				motor,
+				cur,
+				current_limit,
+			)
 
 		times.append(t)
 		traj_ticks.append(traj)
@@ -155,8 +165,9 @@ def main() -> None:
 	parser.add_argument("--sample_hz", type=float, default=50.0)
 	parser.add_argument("--record_s", type=float, default=6.0)
 	parser.add_argument("--period_s", type=float, default=1.0)
-	parser.add_argument("--current_limit", type=int, default=500)
-	parser.add_argument("--kp_test", type=int, default=800)
+	parser.add_argument("--amplitude", type=float, default=0.1)
+	parser.add_argument("--current_limit", type=int, default=550)
+	parser.add_argument("--kp_test", type=int, default=1100)
 	parser.add_argument("--out_dir", default="sysid/outputs/p_gains")
 	parser.add_argument("--log_level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"])
 	args = parser.parse_args()
@@ -185,6 +196,8 @@ def main() -> None:
 			sample_hz=args.sample_hz,
 			record_s=args.record_s,
 			period_s=args.period_s,
+			current_limit=args.current_limit,
+			amplitude=args.amplitude,
 		)
 
 		slope_nm_per_rad = _plot_results(data, out_png)
