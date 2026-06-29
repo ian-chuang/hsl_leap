@@ -14,7 +14,7 @@ import time
 import numpy as np
 import copy
 
-from typing import Any
+from typing import Any, Literal
 
 from hsl_leap import CALIBRATION_PATH
 
@@ -76,7 +76,9 @@ MOTOR_CONFIG = {
 #     "th_mcp": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 350},
 #     "th_ipl": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
 # }
-MOTOR_GAINS = {
+# kp is 1.06 Nm/rad
+# max torque is 0.2575 Nm
+HIGH_MOTOR_GAINS = {
     "if_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
     "if_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
     "if_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
@@ -94,6 +96,26 @@ MOTOR_GAINS = {
     "th_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
     "th_ipl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},   
 }
+# kp is 0.39 Nm/rad
+# max torque is 0.1545 Nm
+LOW_MOTOR_GAINS = {
+    "if_mcp": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_rot": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_pip": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_dip": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_mcp": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_rot": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_pip": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_dip": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_mcp": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_rot": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_pip": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_dip": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_cmc": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_axl": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_mcp": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_ipl": {"kP": 300, "kI": 0, "kD": 0, "curr_lim": 300},   
+}
 
 @dataclass
 class LeapHandConfig(RobotConfig):
@@ -101,12 +123,14 @@ class LeapHandConfig(RobotConfig):
     port: str
     baudrate: int = 4_000_000
     disable_torque_on_disconnect: bool = True
-    gains: dict[str, dict[str, int]] = field(default_factory=lambda: copy.deepcopy(MOTOR_GAINS))
+    # gains: dict[str, dict[str, int]] = field(default_factory=lambda: copy.deepcopy(MOTOR_GAINS))
+    gain_mode: Literal["high", "low"] = "low"
     read_num_retries: int = 3
     def __post_init__(self):
         self.id = "leap_hand"
         logging.info(f"setting calibration dir to {CALIBRATION_PATH}")
         self.calibration_dir = CALIBRATION_PATH
+        self.gains = HIGH_MOTOR_GAINS if self.gain_mode == "high" else LOW_MOTOR_GAINS
 
 
 class LeapHand(Robot):
