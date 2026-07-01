@@ -96,6 +96,26 @@ HIGH_MOTOR_GAINS = {
     "th_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
     "th_ipl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},   
 }
+# kp is .65 Nm/rad
+# max torque is  0.18025 Nm
+MEDIUM_MOTOR_GAINS = {
+    "if_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "if_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "if_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "if_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "mf_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "mf_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "mf_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "mf_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "rf_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "rf_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "rf_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "rf_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "th_cmc": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "th_axl": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "th_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
+    "th_ipl": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},   
+}
 # kp is 0.39 Nm/rad
 # max torque is 0.1545 Nm
 LOW_MOTOR_GAINS = {
@@ -124,13 +144,18 @@ class LeapHandConfig(RobotConfig):
     baudrate: int = 4_000_000
     disable_torque_on_disconnect: bool = True
     # gains: dict[str, dict[str, int]] = field(default_factory=lambda: copy.deepcopy(MOTOR_GAINS))
-    gain_mode: Literal["high", "low"] = "low"
+    gain_mode: Literal["high", "medium", "low"] = "medium"
     read_num_retries: int = 3
     def __post_init__(self):
         self.id = "leap_hand"
         logging.info(f"setting calibration dir to {CALIBRATION_PATH}")
         self.calibration_dir = CALIBRATION_PATH
-        self.gains = HIGH_MOTOR_GAINS if self.gain_mode == "high" else LOW_MOTOR_GAINS
+        options = {
+            "high": HIGH_MOTOR_GAINS,
+            "medium": MEDIUM_MOTOR_GAINS,
+            "low": LOW_MOTOR_GAINS,
+        }
+        self.gains = options[self.gain_mode]
 
 
 class LeapHand(Robot):
