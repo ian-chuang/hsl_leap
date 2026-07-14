@@ -79,22 +79,22 @@ MOTOR_CONFIG = {
 # kp is 1.06 Nm/rad
 # max torque is 0.2575 Nm
 HIGH_MOTOR_GAINS = {
-    "if_mcp": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "if_rot": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "if_pip": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "if_dip": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_mcp": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_rot": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_pip": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_dip": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_mcp": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_rot": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_pip": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_dip": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_cmc": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_axl": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_mcp": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_ipl": {"kP": 1100, "kI": 0, "kD": 0, "curr_lim": 300},   
+    "if_mcp": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_rot": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_pip": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_dip": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_mcp": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_rot": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_pip": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_dip": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_mcp": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_rot": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_pip": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_dip": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_cmc": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_axl": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_mcp": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_ipl": {"kP": 1603, "kI": 0, "kD": 0, "curr_lim": 300},   
 }
 # kp is .65 Nm/rad
 # max torque is  0.18025 Nm
