@@ -156,7 +156,11 @@ def _plot_results(data: dict[str, np.ndarray], out_png: Path) -> float:
 
 	return slope_nm_per_rad
 
-
+# 0.632743
+# 0.667444
+# 0.661797
+# 0.642701
+# like 0.6 or something...
 def main() -> None:
 	parser = argparse.ArgumentParser(description="Square-wave P gain measurement")
 	parser.add_argument("--port", default="/dev/ttyDXL_leap_hand")
@@ -165,8 +169,8 @@ def main() -> None:
 	parser.add_argument("--sample_hz", type=float, default=50.0)
 	parser.add_argument("--record_s", type=float, default=6.0)
 	parser.add_argument("--period_s", type=float, default=1.0)
-	parser.add_argument("--amplitude", type=float, default=0.1)
-	parser.add_argument("--current_limit", type=int, default=550)
+	parser.add_argument("--amplitude", type=float, default=0.05)
+	parser.add_argument("--current_limit", type=int, default=300)
 	parser.add_argument("--kp_test", type=int, default=1100)
 	parser.add_argument("--out_dir", default="sysid/outputs/p_gains")
 	parser.add_argument("--log_level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"])
