@@ -79,22 +79,22 @@ MOTOR_CONFIG = {
 # kp is 1.06 Nm/rad
 # max torque is 0.2575 Nm
 HIGH_MOTOR_GAINS = {
-    "if_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "if_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "if_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "if_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "mf_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "mf_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "mf_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "mf_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "rf_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "rf_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "rf_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "rf_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "th_cmc": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "th_axl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "th_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},
-    "th_ipl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 500},   
+    "if_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_cmc": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_axl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_ipl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},   
 }
 # kp is .65 Nm/rad
 # max torque is  0.18025 Nm
@@ -144,7 +144,7 @@ class LeapHandConfig(RobotConfig):
     baudrate: int = 4_000_000
     disable_torque_on_disconnect: bool = True
     # gains: dict[str, dict[str, int]] = field(default_factory=lambda: copy.deepcopy(MOTOR_GAINS))
-    gain_mode: Literal["high", "medium", "low"] = "medium"
+    gain_mode: Literal["high", "medium", "low"] = "high"
     read_num_retries: int = 3
     def __post_init__(self):
         self.id = "leap_hand"
