@@ -76,45 +76,45 @@ MOTOR_CONFIG = {
 #     "th_mcp": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 350},
 #     "th_ipl": {"kP": 200, "kI": 0, "kD": 0, "curr_lim": 200},
 # }
-# kp is 0.9 Nm/rad
+# kp is 1.06 Nm/rad
 # max torque is 0.1545 Nm
 HIGH_MOTOR_GAINS = {
-    "if_mcp": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "if_rot": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "if_pip": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "if_dip": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_mcp": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_rot": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_pip": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "mf_dip": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_mcp": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_rot": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_pip": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "rf_dip": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_cmc": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_axl": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_mcp": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},
-    "th_ipl": {"kP": 686, "kI": 0, "kD": 0, "curr_lim": 300},   
+    "if_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_rot": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_pip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_dip": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_cmc": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_axl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_mcp": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_ipl": {"kP": 800, "kI": 0, "kD": 0, "curr_lim": 300},   
 }
 # kp is .65 Nm/rad
-# max torque is  0.18025 Nm
+# max torque is  0.1545 Nm
 MEDIUM_MOTOR_GAINS = {
-    "if_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "if_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "if_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "if_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "mf_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "mf_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "mf_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "mf_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "rf_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "rf_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "rf_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "rf_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "th_cmc": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "th_axl": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "th_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},
-    "th_ipl": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 350},   
+    "if_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "if_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "mf_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_rot": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_pip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "rf_dip": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_cmc": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_axl": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_mcp": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},
+    "th_ipl": {"kP": 500, "kI": 0, "kD": 0, "curr_lim": 300},   
 }
 # kp is 0.39 Nm/rad
 # max torque is 0.1545 Nm
@@ -337,5 +337,13 @@ if __name__ == "__main__":
     print(hand.get_lower_pos_limits())
     actions = ZERO_POSITION
     hand.move(actions, duration=2.0)
-    input()
-    hand.disconnect()
+    # keep reading until user press
+    try:
+        while True:
+            obs = hand.get_observation()
+            print(obs)
+            time.sleep(1/30.0)
+    except KeyboardInterrupt:
+        print("Exiting...")
+    finally:
+        hand.disconnect()
