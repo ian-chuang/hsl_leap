@@ -59,22 +59,22 @@ MOTOR_CONFIG = {
 }
 
 MOTOR_GAINS = {
-    "if_mcp": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
-    "if_rot": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "if_pip": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "if_dip": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "mf_mcp": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
-    "mf_rot": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "mf_pip": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "mf_dip": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "rf_mcp": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
-    "rf_rot": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "rf_pip": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "rf_dip": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "th_cmc": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
-    "th_axl": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "th_mcp": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
-    "th_ipl": {"kP": 800, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "if_mcp": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
+    "if_rot": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "if_pip": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "if_dip": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "mf_mcp": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
+    "mf_rot": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "mf_pip": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "mf_dip": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "rf_mcp": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
+    "rf_rot": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "rf_pip": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "rf_dip": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "th_cmc": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 300},
+    "th_axl": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "th_mcp": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
+    "th_ipl": {"kP": 1100, "kI": 0, "kD": 0, "ff1": 0, "ff2": 0, "pwm_lim": 200},
 }
 
 @dataclass
